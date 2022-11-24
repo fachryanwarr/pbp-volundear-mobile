@@ -99,3 +99,9 @@ Melihat kondisi ini, kami kelompok A01 memiliki gagasan untuk membentuk sebuah _
 4. Admin
 - Mengalokasikan donasi
 - Mengatur FAQ
+
+## Alur Pengintegrasian dengan Web Service untuk Terhubung dengan Aplikasi Web
+- Menggunakan library http pada proyek Flutter untuk mengambil data berformat json melalui HTTP request
+- Membuat model dengan atribut yang sesuai dengan model yang sebelumnya digunakan pada aplikasi web
+- Get data json dari model tersebut menggunakan HTTP get
+- Menampilkan data yang didapat dengan built-in class `FutureBuilder`
