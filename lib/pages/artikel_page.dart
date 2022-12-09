@@ -19,7 +19,7 @@ class _ArtikelPage extends State<ArtikelPage> {
     @override
     void initState() {
       _artikelData = ArtikelData();
-      _artikel = _artikelData.fetchMyWatchList();
+      _artikel = _artikelData.fetchArtikel();
       super.initState();
     }
 
@@ -27,7 +27,7 @@ class _ArtikelPage extends State<ArtikelPage> {
     Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('My Watch List'),
+          title: const Text('Artikel'),
         ),
         // Menambahkan drawer menu
         drawer: const MyDrawer(),

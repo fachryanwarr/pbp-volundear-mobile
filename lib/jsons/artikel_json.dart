@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ArtikelData {
-  Future<List<Artikel>> fetchMyWatchList() async {
+  Future<List<Artikel>> fetchArtikel() async {
     try {
       Uri url = Uri.parse(
           'https://volundear.up.railway.app/artikel/json/');

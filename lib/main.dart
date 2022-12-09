@@ -10,35 +10,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Counter 7',
+      title: 'LandingPage 7',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Counter(),
+      home: const LandingPage(),
     );
   }
 }
 
-class Counter extends StatefulWidget {
-  const Counter({super.key});
-  final String title = 'Program Counter';
+class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
+  final String title = 'Program LandingPage';
 
   @override
-  State<Counter> createState() => _CounterState();
+  State<LandingPage> createState() => _LandingPageState();
   }
 
-class _CounterState extends State<Counter> {
-  int _counter = 0;
+class _LandingPageState extends State<LandingPage> {
+  int _LandingPage = 0;
 
-  void _incrementCounter() {
+  void _incrementLandingPage() {
     setState(() {
-      _counter++;
+      _LandingPage++;
     });
   }
 
-  void _decrementCounter() {
+  void _decrementLandingPage() {
     setState(() {
-      _counter--;
+      _LandingPage--;
     });
   }
   @override
@@ -53,7 +53,7 @@ class _CounterState extends State<Counter> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (_counter % 2 == 0) 
+            if (_LandingPage % 2 == 0) 
               const Text(
                 'GENAP',
                 style: TextStyle(color: Colors.blue),
@@ -64,7 +64,7 @@ class _CounterState extends State<Counter> {
               style: TextStyle(color: Colors.red),
             ),
             Text(
-              '$_counter',
+              '$_LandingPage',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -73,17 +73,17 @@ class _CounterState extends State<Counter> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (_counter > 0)
+          if (_LandingPage > 0)
             Padding(padding: const EdgeInsets.only(left: 30),
               child: FloatingActionButton(
-                onPressed: _decrementCounter,
+                onPressed: _decrementLandingPage,
                 tooltip: 'Decrement',
                 child: const Icon(Icons.remove),
               ),
             ),
           Padding(padding: const EdgeInsets.only(left: 30),
             child: FloatingActionButton(
-              onPressed: _incrementCounter,
+              onPressed: _incrementLandingPage,
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),

@@ -39,6 +39,7 @@ class ArtikelItemCard extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
+
           ],
         ),
       ),
