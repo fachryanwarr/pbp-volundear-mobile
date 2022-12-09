@@ -7,11 +7,21 @@ class ArtikelData {
     try {
       Uri url = Uri.parse(
           'https://volundear.up.railway.app/artikel/json/');
-      var response = await http.get(url);
+      var response = await http.get(
+          url,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        );
       var data = jsonDecode(utf8.decode(response.bodyBytes));
+      
       List<Artikel> artikelList = [];
       for (var item in data) {
-        artikelList.add(Artikel.fromJson(item['fields']));
+        if (item != null){
+          artikelList.add(Artikel.fromJson(item));
+        }
+        
       }
       return artikelList;
     } catch (e) {

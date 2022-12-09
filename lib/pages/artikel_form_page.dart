@@ -37,6 +37,7 @@ class _ArtikelFormState extends State<ArtikelForm> {
           'pembuka': pembukaController,
           'isi': isiController,
         }));
+    // ignore: avoid_print
     print(response.body);
   }
 
@@ -45,7 +46,7 @@ class _ArtikelFormState extends State<ArtikelForm> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        title: const Text("Silahkan isi form berikut ini"),
+        title: const Text("Tambahkan Artikel"),
       ),
       body: Form(
         key: _formKey,
@@ -182,24 +183,48 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     },
                   ),
                 ),
-                // Save button
-                TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      submit(context, _penulis, _judul, _rilis,_pembuka,_isi);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const ArtikelPage()),
-                      );
-                    }
-                  },
-                  child: const Text(
-                    "Simpan",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                // Button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Save button
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: 
+                        TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            submit(context, _penulis, _judul, _rilis,_pembuka,_isi);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const ArtikelPage()),
+                            );
+                          }
+                        },
+                        child: const Text(
+                          "Simpan",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    // Back button
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          "Back",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

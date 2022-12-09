@@ -61,12 +61,12 @@ class _ArtikelPage extends State<ArtikelPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ArtikelDetail(
-                                  artikel: snapshot.data[index],
+                                  artikel: snapshot.data![index],
                                 ),
                               ),
                             ),
                             child: ArtikelItemCard(
-                              artikel: snapshot.data[index],
+                              artikel: snapshot.data![index],
                             ),
                           ),
                         ),

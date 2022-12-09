@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:volundear/drawer.dart';
 import 'package:volundear/models/artikel.dart';
+import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_page.dart';
 
 class ArtikelDetail extends StatefulWidget {
@@ -19,7 +20,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
   Widget build(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Wacth Item Detail'),
+          title: const Text('Artikel Lengkap'),
           elevation: 0,
         ),
         // Menambahkan drawer menu
@@ -35,7 +36,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                   children: [
                     Center(
                       child: Text(
-                        widget.artikel.judul,
+                        widget.artikel.fields.judul,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     ),
                     Center(
                       child: Text(
-                        (widget.artikel.penulis).toString(),
+                        (widget.artikel.fields.penulis).toString(),
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -53,7 +54,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     ),
                     Center(
                       child: Text(
-                        widget.artikel.rilis,
+                        "${widget.artikel.fields.rilis.year}-${widget.artikel.fields.rilis.month}-${widget.artikel.fields.rilis.day}",
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -63,7 +64,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
                       child: Text(
-                        widget.artikel.pembuka,
+                        widget.artikel.fields.pembuka,
                         textAlign: TextAlign.justify,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -73,16 +74,17 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
                       child: Text(
-                        widget.artikel.isi,
+                        widget.artikel.fields.isi,
                         textAlign: TextAlign.justify,
                       ),
                     ),
                   ],
                 ),
+                // Button komentar
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushReplacement(
+                    onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const ArtikelPage()), //FormKomentar()
                     ),
@@ -91,6 +93,19 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     child: const Text('Komentar'),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ArtikelForm()), //FormKomentar()
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50)),
+                    child: const Text('Tambah Artikel'),
+                  ),
+                ),
+                // Button kembali
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: ElevatedButton(

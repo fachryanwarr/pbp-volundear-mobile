@@ -15,16 +15,16 @@ class ArtikelItemCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Colors.pink
+          color: Colors.lightBlue
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              artikel.judul,
+              artikel.fields.judul,
               style: const TextStyle(
                 color: Colors.lightBlue,
                 fontSize: 16,
@@ -32,9 +32,9 @@ class ArtikelItemCard extends StatelessWidget {
               ),
             ),
             Text(
-              artikel.pembuka,
+              artikel.fields.pembuka,
               style: const TextStyle(
-                color: Colors.lightBlue,
+                color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:volundear/main.dart';
-import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_page.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -32,16 +31,6 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const ArtikelPage()),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Form Artikel'),
-            onTap: () {
-              // Route menu ke halaman form artikel
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ArtikelForm()),
               );
             },
           ),
