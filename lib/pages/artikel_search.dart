@@ -1,52 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
 import 'package:volundear/jsons/artikel_json.dart';
-import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
-import 'package:volundear/pages/artikel_search.dart';
 import 'package:volundear/widgets/artikel_item_card.dart';
 
-class ArtikelPage extends StatefulWidget {
-    const ArtikelPage({Key? key}) : super(key: key);
+class SearchArtikel extends SearchDelegate{
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () {
+          query = "";
+        },
+      )
+    ];
+  }
 
-    @override
-    State<ArtikelPage> createState() => _ArtikelPage();
-}
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back_ios),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
 
-class _ArtikelPage extends State<ArtikelPage> {
-    late Future<List<Artikel>> _artikel;
-    late ArtikelData _artikelData;
-    
-    @override
-    void initState() {
-      _artikelData = ArtikelData();
-      _artikel = _artikelData.fetchArtikel();
-      super.initState();
-    }
+  final ArtikelData _artikelData = ArtikelData();
 
-    @override
-    Widget build(BuildContext context) {
+  @override
+  Widget buildResults(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF1E1E1E),
-        appBar: AppBar(
-          title: const Text('Artikel'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: (){
-                showSearch(context: context, delegate: SearchArtikel());
-              }, 
-            )
-          ],
-        ),
-        // Menambahkan drawer menu
-        drawer: const MyDrawer(),
+        backgroundColor: const Color(0xFF1E1E1E),      
         body: Column(
           children: [
             Expanded(
               child: Center(
                 child: FutureBuilder(
-                  future: _artikel,
+                  future: _artikelData.fetchArtikel(query: query),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return const Center(child: CircularProgressIndicator());
@@ -100,5 +91,20 @@ class _ArtikelPage extends State<ArtikelPage> {
           ],
         )
       );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Color(0xFF1E1E1E),
+      body: Center(
+        child: Text(
+          'Search Artikel',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+          ),
+      ),
+    );
   }
 }

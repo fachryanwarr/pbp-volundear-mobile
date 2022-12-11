@@ -21,6 +21,7 @@ class ArtikelItemCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
@@ -34,16 +35,17 @@ class ArtikelItemCard extends StatelessWidget {
                 ),
               ),
             ),
-            
             Padding(
-              padding: const EdgeInsets.fromLTRB(2, 0, 2, 10),
-              child: Text(
-                artikel.fields.judul,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color:  Color(0xFFac2bac),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+              padding: const EdgeInsets.fromLTRB(2, 10, 2, 10),
+              child: Center(
+                child: Text(
+                  artikel.fields.judul,
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                    color:  Color(0xFFac2bac),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

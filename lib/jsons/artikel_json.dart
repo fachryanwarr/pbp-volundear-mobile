@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:volundear/models/artikelKomentar.dart';
 
 class ArtikelData {
-  Future<List<Artikel>> fetchArtikel() async {
+  Future<List<Artikel>> fetchArtikel({String? query}) async {
     try {
       Uri url = Uri.parse(
           'https://volundear.up.railway.app/artikel/json/');
@@ -23,7 +23,11 @@ class ArtikelData {
         if (item != null){
           artikelList.add(Artikel.fromJson(item));
         }
-        
+      
+      if (query != null) {
+        artikelList = artikelList.where((element) => element.fields.judul.toLowerCase().contains(query.toLowerCase())).toList();
+      }
+
       }
       return artikelList;
     } catch (e) {
