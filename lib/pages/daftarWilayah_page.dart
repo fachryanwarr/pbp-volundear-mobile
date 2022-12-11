@@ -4,6 +4,7 @@ import 'package:volundear/models/daftarWilayah.dart';
 import 'dart:convert';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/fixedWidget/bottom_navbar.dart';
+import 'package:volundear/pages/detail_wilayah_page.dart';
 
 class WilayahPage extends StatefulWidget {
   const WilayahPage({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class WilayahPage extends StatefulWidget {
 }
 
 class _WilayahPageState extends State<WilayahPage> {
-  final int _indexNavbar = 1;
 
   Future<List<Wilayah>> fetchWilayah() async {
     var url = Uri.parse('https://volundear.up.railway.app/daftarwilayah/json');
@@ -28,15 +28,15 @@ class _WilayahPageState extends State<WilayahPage> {
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    // melakukan konversi data json menjadi object ToDo
-    List<Wilayah> listToDo = [];
+    // melakukan konversi data json menjadi object Wilayah
+    List<Wilayah> listWilayah = [];
     for (var d in data) {
       if (d != null) {
-        listToDo.add(Wilayah.fromJson(d));
+        listWilayah.add(Wilayah.fromJson(d));
       }
     }
 
-    return listToDo;
+    return listWilayah;
   }
 
   @override
@@ -89,6 +89,18 @@ class _WilayahPageState extends State<WilayahPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailWilayah(detail: snapshot.data![index]),
+                                  )
+                              );
+                            },
+                            child: const Text("Lihat selengkapnya"))
                       ],
                     ),
                   )
