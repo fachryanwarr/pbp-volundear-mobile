@@ -26,6 +26,7 @@ class _ArtikelPage extends State<ArtikelPage> {
     @override
     Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xFF1E1E1E),
         appBar: AppBar(
           title: const Text('Artikel'),
         ),
@@ -39,13 +40,13 @@ class _ArtikelPage extends State<ArtikelPage> {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.hasData) {
-                  return Padding(
-                        padding: const EdgeInsets.all(20.0),
+                  return const Padding(
+                        padding: EdgeInsets.all(20.0),
                         child: Text(
                           'Belum ada artikel :(',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.deepPurple.shade200,
+                            color: Color.fromARGB(255, 89, 0, 255),
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),

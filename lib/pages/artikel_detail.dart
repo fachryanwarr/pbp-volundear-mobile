@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:volundear/drawer.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
-import 'package:volundear/models/komentarArtikel.dart';
+import 'package:volundear/models/artikelKomentar.dart';
 import 'package:volundear/pages/artikel_form_page.dart';
+import 'package:volundear/pages/artikel_komentar_form.dart';
 import 'package:volundear/pages/artikel_page.dart';
 import 'package:volundear/widgets/komentar_artikel_item_card.dart';
 
@@ -32,6 +33,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
   @override
   Widget build(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: const Color(0xFF1E1E1E),
         appBar: AppBar(
           title: const Text('Artikel Lengkap'),
           elevation: 0,
@@ -42,7 +44,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 12),
+                padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -55,6 +57,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
+                              color: Color(0xFFe971d7),
                             ),
                           ),
                         ),
@@ -62,6 +65,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                           child: Text(
                             (widget.artikel.fields.penulis).toString(),
                             style: const TextStyle(
+                              color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -73,6 +77,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
+                              color: Color(0xFFe971d7),
                             ),
                           ),
                         ),
@@ -84,6 +89,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
+                              color: Color(0xFF4EC1F3),
                             ),
                           ),
                         ),
@@ -94,6 +100,19 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                             textAlign: TextAlign.justify,
                             style: const TextStyle(
                               fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: Text(
+                            'Kolom komentar',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Color(0xFF4EC1F3),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -111,14 +130,14 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                         return const Center(child: CircularProgressIndicator());
                       } else {
                         if (!snapshot.hasData) {
-                          return Padding(
-                                padding: const EdgeInsets.all(20.0),
+                          return const Padding(
+                                padding: EdgeInsets.all(16.0),
                                 child: Text(
                                   'Belum ada komentar :(',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Colors.deepPurple.shade200,
-                                    fontSize: 20,
+                                    color: Color(0xFF4EC1F3),
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -127,18 +146,6 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 16, right: 16),
-                                child: Text(
-                                  'Kolom komentar',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
                               ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: snapshot.data.length,
@@ -163,22 +170,28 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                   child: ElevatedButton(
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const ArtikelPage()), //FormKomentar()
+                      MaterialPageRoute(builder: (context) => const KomentarForm()), //FormKomentar()
                     ),
                     style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50)),
+                        minimumSize: const Size.fromHeight(50), 
+                        backgroundColor: const Color(0xFFe971d7),
+                    ),
+                        
                     child: const Text('Komentar'),
                   ),
                 ),
+                // Button tambah artikel
                 Padding(
                   padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
                   child: ElevatedButton(
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const ArtikelForm()), //FormKomentar()
+                      MaterialPageRoute(builder: (context) => const ArtikelForm()),
                     ),
                     style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50)),
+                        minimumSize: const Size.fromHeight(50),
+                        backgroundColor: const Color(0xFFe971d7),
+                    ),
                     child: const Text('Tambah Artikel'),
                   ),
                 ),
@@ -188,7 +201,9 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                   child: ElevatedButton(
                     onPressed: () => Navigator.pop(context),
                     style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50)),
+                        minimumSize: const Size.fromHeight(50),
+                        backgroundColor: const Color(0xFFe971d7),
+                    ),
                     child: const Text('Back'),
                   ),
                 ),

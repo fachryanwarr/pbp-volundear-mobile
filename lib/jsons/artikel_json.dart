@@ -2,7 +2,7 @@ import 'package:volundear/models/artikel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:volundear/models/komentarArtikel.dart';
+import 'package:volundear/models/artikelKomentar.dart';
 
 class ArtikelData {
   Future<List<Artikel>> fetchArtikel() async {

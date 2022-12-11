@@ -1,5 +1,5 @@
 import 'package:volundear/models/artikel.dart';
-import 'package:volundear/models/komentarArtikel.dart';
+import 'package:volundear/models/artikelKomentar.dart';
 import 'package:flutter/material.dart';
 
 class KomentarItemCard extends StatelessWidget {
@@ -16,21 +16,21 @@ class KomentarItemCard extends StatelessWidget {
     if (artikel.pk == komentar.fields.artikel) {
       return Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xFF1E1E1E),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: Colors.lightBlue
+            color: const Color(0xFF1E1E1E)
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 (komentar.fields.penulis).toString(),
                 style: const TextStyle(
-                  color: Colors.lightBlue,
+                  color: Color(0xFFe971d7),
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
@@ -38,7 +38,7 @@ class KomentarItemCard extends StatelessWidget {
               Text(
                 "${komentar.fields.waktu.year}-${komentar.fields.waktu.month}-${komentar.fields.waktu.day}",
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                 ),
@@ -46,7 +46,7 @@ class KomentarItemCard extends StatelessWidget {
               Text(
                 komentar.fields.deskripsi,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),

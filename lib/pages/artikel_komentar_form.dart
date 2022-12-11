@@ -4,32 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:volundear/drawer.dart';
 import 'package:volundear/pages/artikel_page.dart';
 
-class ArtikelForm extends StatefulWidget {
-  const ArtikelForm({super.key});
+class KomentarForm extends StatefulWidget {
+  const KomentarForm({super.key});
   @override
-  State<ArtikelForm> createState() => _ArtikelFormState();
+  State<KomentarForm> createState() => _KomentarFormState();
 }
 
-class _ArtikelFormState extends State<ArtikelForm> {
+class _KomentarFormState extends State<KomentarForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final String _model = "artikel.artikel";
+  final String _model = "artikel.komentar";
   final int _pk = 0;
+  final int _artikel = 0;
   int _penulis = 0;
-  String _judul = "";
-  final String _rilis = (DateTime.now()).toString();
-  String _pembuka = "";
-  String _isi = "";
+  final String _waktu = (DateTime.now()).toString();
+  String _deskripsi = "";
 
   Future<void> submit(
-    BuildContext context, String model, int pk, int penulis, String judul, String rilis, String pembuka, String isi) async {
+    BuildContext context, String model, int pk, int artikel, int penulis, String waktu, String deskripsi) async {
     String modelController = model;
     int pkController = pk;
+    int pkArtikelController = artikel;
     int penulisController = penulis;
-    String judulController = judul;
-    String rilisController = rilis;
-    String pembukaController = pembuka;
-    String isiController = isi;
+    String waktuController = waktu;
+    String deskripsiController = deskripsi;
     final response = await http.post(
         Uri.parse(
             "https://volundear.up.railway.app/artikel/json/"),
@@ -37,11 +35,10 @@ class _ArtikelFormState extends State<ArtikelForm> {
         body: jsonEncode(<String, dynamic>{
           'model' : modelController,
           'pk': pkController + 1,
+          'artikel': pkArtikelController + 1,
           'penulis': penulisController,
-          'judul': judulController,
-          'rilis': rilisController,
-          'pembuka': pembukaController,
-          'isi': isiController,
+          'waktu': waktuController,
+          'deskripsi': deskripsiController,
         }));
     // ignore: avoid_print
     print(response.body);
@@ -101,7 +98,7 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     },
                   ),
                 ),
-                // Form Judul
+                // Form deskripsi
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -112,47 +109,8 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "Isi dengan judul artikel",
-                      labelText: "Judul Artikel",
-                      icon: const Icon(Icons.title, 
-                            color: Colors.white),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                    // Menambahkan behavior saat judul diketik 
-                    onChanged: (String? value) {
-                        setState(() {
-                            _judul = value!;
-                        });
-                    },
-                    // Menambahkan behavior saat data disimpan
-                    onSaved: (String? value) {
-                        setState(() {
-                            _judul = value!;
-                        });
-                    },
-                    // Validator sebagai validasi form
-                    validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                            return 'Judul artikel tidak boleh kosong!';
-                        }
-                        return null;
-                    },
-                  ),
-                ),
-                // Form Pembuka
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black,
-                      decorationColor: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "Isi dengan kalimat pembuka artikel",
-                      labelText: "Pembuka Artikel",
+                      hintText: "Isi dengan komentar",
+                      labelText: "Komentar",
                       icon: const Icon(Icons.text_fields, 
                             color: Colors.white),
                       border: OutlineInputBorder(
@@ -161,58 +119,19 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     // Menambahkan behavior saat judul diketik 
                     onChanged: (String? value) {
                         setState(() {
-                            _pembuka = value!;
+                            _deskripsi = value!;
                         });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                         setState(() {
-                            _pembuka = value!;
+                            _deskripsi = value!;
                         });
                     },
                     // Validator sebagai validasi form
                     validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                            return 'Pembuka artikel tidak boleh kosong!';
-                        }
-                        return null;
-                    },
-                  ),
-                ),
-                // Form Isi
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black,
-                      decorationColor: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "Isi dengan isi artikel",
-                      labelText: "Isi Artikel",
-                      icon: const Icon(Icons.text_fields, 
-                            color: Colors.white),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                    // Menambahkan behavior saat judul diketik 
-                    onChanged: (String? value) {
-                        setState(() {
-                            _isi = value!;
-                        });
-                    },
-                    // Menambahkan behavior saat data disimpan
-                    onSaved: (String? value) {
-                        setState(() {
-                            _isi = value!;
-                        });
-                    },
-                    // Validator sebagai validasi form
-                    validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                            return 'Isi artikel tidak boleh kosong!';
+                            return 'deskripsi artikel tidak boleh kosong!';
                         }
                         return null;
                     },
@@ -232,7 +151,7 @@ class _ArtikelFormState extends State<ArtikelForm> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            submit(context, _model, _pk, _penulis, _judul, _rilis, _pembuka, _isi);
+                            submit(context, _model, _pk, _artikel, _penulis, _waktu, _deskripsi);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => const ArtikelPage()),

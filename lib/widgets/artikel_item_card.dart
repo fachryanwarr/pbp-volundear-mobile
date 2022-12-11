@@ -15,21 +15,34 @@ class ArtikelItemCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Colors.lightBlue
+          color: const Color(0xFF4EC1F3),
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+              child: Text(
+                "Dirilis pada ${artikel.fields.rilis.year}-${artikel.fields.rilis.month}-${artikel.fields.rilis.day}",
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 10),
               child: Text(
                 artikel.fields.judul,
+                textAlign: TextAlign.start,
                 style: const TextStyle(
-                  color: Colors.lightBlue,
-                  fontSize: 18,
+                  color:  Color(0xFFac2bac),
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -41,7 +54,7 @@ class ArtikelItemCard extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),
