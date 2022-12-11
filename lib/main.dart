@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/pages/daftarWilayah_page.dart';
+import 'package:volundear/fixedWidget/appbar.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,22 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const WilayahPage(),
-                    )
-                );
-              },
-              child: const Text("Go To Daftar "))
-        ],
-      ),
+      appBar: myAppBar(context),
+      body: const Text("Hello World!"),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 }

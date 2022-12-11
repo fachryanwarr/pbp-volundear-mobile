@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:volundear/models/daftarWilayah.dart';
 import 'dart:convert';
+import 'package:volundear/fixedWidget/appbar.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
 
 class WilayahPage extends StatefulWidget {
   const WilayahPage({Key? key}) : super(key: key);
@@ -11,6 +13,8 @@ class WilayahPage extends StatefulWidget {
 }
 
 class _WilayahPageState extends State<WilayahPage> {
+  final int _indexNavbar = 1;
+
   Future<List<Wilayah>> fetchWilayah() async {
     var url = Uri.parse('https://volundear.up.railway.app/daftarwilayah/json');
     var response = await http.get(
@@ -38,10 +42,7 @@ class _WilayahPageState extends State<WilayahPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Daftar Wilayah"),
-          centerTitle: true,
-        ),
+        appBar: myAppBar(context),
         body: FutureBuilder(
           future: fetchWilayah(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -94,7 +95,8 @@ class _WilayahPageState extends State<WilayahPage> {
               );
             }
           },
-        )
+        ),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 }
