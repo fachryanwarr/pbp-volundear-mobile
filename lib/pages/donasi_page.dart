@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:volundear/drawer.dart';
 import 'package:volundear/jsons/donasi_json.dart';
-import 'package:volundear/models/artikel.dart';
-import 'package:volundear/pages/artikel_detail.dart';
-import 'package:volundear/widgets/artikel_item_card.dart';
+
+import '../models/donasi.dart';
+import '../widgets/donasi_item_card.dart';
 
 class DonasiPage extends StatefulWidget {
     const DonasiPage({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class DonasiPage extends StatefulWidget {
 }
 
 class _DonasiPage extends State<DonasiPage> {
-    late Future<List<Donasi>> _artikel;
+    late Future<List<Donasi>> _donasi;
     late DonasiData _donasiData;
     
     @override
@@ -34,7 +34,7 @@ class _DonasiPage extends State<DonasiPage> {
         drawer: const MyDrawer(),
         body: Center(
           child: FutureBuilder(
-            future: _artikel,
+            future: _donasi,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -57,8 +57,8 @@ class _DonasiPage extends State<DonasiPage> {
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                          child: child: DonasiItemCard(
-                              artikel: snapshot.data![index],
+                          child: DonasiItemCard(
+                              donasi: snapshot.data![index],
                             ),
                         ),
                         padding: const EdgeInsets.only(bottom: 12),

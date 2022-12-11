@@ -7,9 +7,9 @@ import 'dart:convert';
 
 class Donasi {
     Donasi({
-        @required this.model,
-        @required this.pk,
-        @required this.fields,
+        required this.model,
+        required this.pk,
+        required this.fields,
     });
 
     final String model;
@@ -31,10 +31,10 @@ class Donasi {
 
 class Fields {
     Fields({
-        @required this.user,
-        @required this.nama,
-        @required this.jumlah,
-        @required this.pesan,
+        required this.user,
+        required this.nama,
+        required this.jumlah,
+        required this.pesan,
     });
 
     final int user;

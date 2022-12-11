@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/models/artikel.dart';
+import 'package:volundear/models/donasi.dart';
 
-class ArtikelItemCard extends StatelessWidget {
-  final Artikel artikel;
-  const ArtikelItemCard({
+class DonasiItemCard extends StatelessWidget {
+  final Donasi donasi;
+  const DonasiItemCard({
     Key? key,
-    required this.artikel,
+    required this.donasi,
   }) : super(key: key);
 
   @override
@@ -21,36 +21,35 @@ class ArtikelItemCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
-          children: [
+          children: [ 
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
               child: Text(
-                "Dirilis pada ${artikel.fields.rilis.year}-${artikel.fields.rilis.month}-${artikel.fields.rilis.day}",
+                donasi.fields.nama,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            
-            Padding(
-              padding: const EdgeInsets.fromLTRB(2, 0, 2, 10),
-              child: Text(
-                artikel.fields.judul,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color:  Color(0xFFac2bac),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
               child: Text(
-                artikel.fields.pembuka,
+                (donasi.fields.jumlah).toString(),
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+              child: Text(
+                donasi.fields.pesan,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,

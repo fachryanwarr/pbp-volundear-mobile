@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volundear/main.dart';
-import 'package:volundear/pages/artikel_page.dart';
+import 'package:volundear/pages/donasi_page.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
