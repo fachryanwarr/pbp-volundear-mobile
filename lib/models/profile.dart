@@ -34,15 +34,17 @@ class Fields {
     required this.pekerjaan,
     required this.alamat,
     required this.tanggal_lahir,
+    required this.imagePath,
   });
 
   final user;
   final String name;
   final String gender;
-  final int phone_number;
+  final String phone_number;
   final String pekerjaan;
   final String alamat;
-  final int tanggal_lahir;
+  final String tanggal_lahir;
+  final String imagePath;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         user: json["user"],
@@ -52,6 +54,7 @@ class Fields {
         pekerjaan: json["pekerjaan"],
         alamat: json["alamat"],
         tanggal_lahir: json["tanggal_lahir"],
+        imagePath: json["imagePath"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,5 +65,6 @@ class Fields {
         "pekerjaan": pekerjaan,
         "alamat": alamat,
         "tanggal_lahir": tanggal_lahir,
+        "imagePath": imagePath,
       };
 }

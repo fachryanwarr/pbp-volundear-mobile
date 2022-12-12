@@ -49,7 +49,7 @@ class ProfileDataCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
               child: Text(
-                (userData.fields.phone_number).toString(),
+                userData.fields.phone_number,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
@@ -85,7 +85,7 @@ class ProfileDataCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
               child: Text(
-                (userData.fields.tanggal_lahir).toString(),
+                userData.fields.tanggal_lahir,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
