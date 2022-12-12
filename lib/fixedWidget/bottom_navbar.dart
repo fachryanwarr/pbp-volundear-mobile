@@ -74,7 +74,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.people),
-          label: "Komunitas",
+          label: "Relawan",
         )
       ],
     );

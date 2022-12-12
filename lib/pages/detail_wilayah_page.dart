@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/models/daftarWilayah.dart';
 import 'package:volundear/fixedWidget/size_config.dart';
+import 'package:volundear/pages/form_pendaftaran.dart';
 
 class DetailWilayah extends StatelessWidget {
   const DetailWilayah({Key? key, required this.detail, required this.username}) : super(key: key);
@@ -175,7 +176,13 @@ class DetailWilayah extends StatelessWidget {
                       child: Container(
                         width: 0.8 * SizeConfig.screenWidth,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => FormPendaftaran(wilayah: detail, username: username),
+                                  )
+                              );
+                            },
                             child: const Text(
                                 "Daftar"
                             )),
