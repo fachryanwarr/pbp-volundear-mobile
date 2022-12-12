@@ -4,8 +4,9 @@ import 'package:volundear/models/daftarWilayah.dart';
 import 'package:volundear/fixedWidget/size_config.dart';
 
 class DetailWilayah extends StatelessWidget {
-  const DetailWilayah({Key? key, required this.detail}) : super(key: key);
+  const DetailWilayah({Key? key, required this.detail, required this.username}) : super(key: key);
 
+  final String username;
   final Wilayah detail;
 
   @override

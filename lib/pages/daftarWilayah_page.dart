@@ -117,7 +117,7 @@ class _WilayahPageState extends State<WilayahPage> {
                             onPressed: () {
                               Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => DetailWilayah(detail: snapshot.data![index]),
+                                    builder: (context) => DetailWilayah(detail: snapshot.data![index], username: widget.username,),
                                   )
                               );
                             },
@@ -130,7 +130,8 @@ class _WilayahPageState extends State<WilayahPage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
+
+      floatingActionButton: (request.loggedIn) ? FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
               MaterialPageRoute(
@@ -139,8 +140,7 @@ class _WilayahPageState extends State<WilayahPage> {
           );
         },
         child: const Icon(Icons.add),
-
-      ),
+      ) : Container(),
       bottomNavigationBar: MyBottomNavBar(selectedNavbar: 1, username: widget.username,),
     );
   }
