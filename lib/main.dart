@@ -36,23 +36,14 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title, required this.username});
-<<<<<<< HEAD
-
-  final String title;
-  final String username;
-=======
->>>>>>> 3af327fe37269a362b9d1d840f5e1b4dff3dfa40
 
   final String title;
   final String username;
 
-<<<<<<< HEAD
-=======
   @override
   State<MyHomePage> createState() => _MyHomePageState();
   }
 
->>>>>>> 3af327fe37269a362b9d1d840f5e1b4dff3dfa40
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {

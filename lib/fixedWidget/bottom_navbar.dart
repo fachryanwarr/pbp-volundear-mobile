@@ -28,11 +28,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       MyHomePage(title: "Volundear", username: widget.username),
       WilayahPage(username: widget.username,),
       const Text("ARTIKEL"),
-<<<<<<< HEAD
-      const Text("DONASI"),
-=======
       const DonasiPage(),
->>>>>>> 3af327fe37269a362b9d1d840f5e1b4dff3dfa40
       const Text("Community"),
     ];
 

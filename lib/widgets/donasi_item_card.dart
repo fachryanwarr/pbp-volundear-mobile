@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:volundear/models/donasi.dart';
 
@@ -20,7 +22,7 @@ class DonasiItemCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Column(
+        child: Column( 
           children: [ 
             Padding(
               padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),

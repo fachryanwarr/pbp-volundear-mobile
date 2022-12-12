@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/donasi_json.dart';
@@ -29,7 +30,41 @@ class _DonasiPage extends State<DonasiPage> {
         backgroundColor: const Color(0xFF1E1E1E),
         appBar: myAppBar(context),
         // Menambahkan drawer menu
-        body: Center(
+        body: Column(
+          children: [
+            CarouselSlider(
+            options: CarouselOptions(
+              height: 400,
+              aspectRatio: 16/9,
+              viewportFraction: 0.8,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              enlargeFactor: 0.3,
+              scrollDirection: Axis.horizontal,
+            ),
+            items: [1,2,3,4,5].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                      color: Colors.amber
+                    ),
+                    child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                  );
+                },
+              );
+            }).toList(),
+          ),
+            Expanded(
+              child: Center(
           child: FutureBuilder(
             future: _donasi,
             builder: (context, AsyncSnapshot snapshot) {
@@ -64,6 +99,9 @@ class _DonasiPage extends State<DonasiPage> {
               }
             },
           ),
+        ),
+            )
+          ],
         )
       );
   }
