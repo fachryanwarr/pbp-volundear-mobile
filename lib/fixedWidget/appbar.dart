@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/pages/login_page.dart';
 import 'package:volundear/pages/profiles_menu.dart';
 
 PreferredSizeWidget myAppBar(BuildContext context) {

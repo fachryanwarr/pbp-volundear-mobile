@@ -3,8 +3,6 @@ import 'package:volundear/fixedWidget/size_config.dart';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:volundear/pages/daftarWilayah_page.dart';
 
 class FormWilayah extends StatefulWidget {
@@ -33,7 +31,7 @@ class _FormWilayahState extends State<FormWilayah> {
   DateTime akhirPeriode = DateTime.now();
 
   Future<void> submitV2(BuildContext context, CookieRequest request) async {
-    final response = await request.post(
+    await request.post(
         'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/',
         {
           'name' : nama,

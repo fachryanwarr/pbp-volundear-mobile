@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 import 'package:volundear/pages/daftarWilayah_page.dart';
 import 'package:volundear/pages/artikel_page.dart';
 import 'package:volundear/pages/donasi_page.dart';
@@ -21,8 +19,6 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-    int selectedNavbar = 0;
 
     List bodyContent = [
     
@@ -47,7 +43,6 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       currentIndex: widget.selectedNavbar,
       onTap: (value) {
         setState(() {
-          selectedNavbar = value;
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => bodyContent[value],

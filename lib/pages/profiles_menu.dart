@@ -40,8 +40,8 @@ class _ProfileMenuState extends State<ProfileMenu> {
                   ),
 
                   child: (request.loggedIn) ? TextButton(
-                    onPressed: () async {
-                      await request.logout(
+                    onPressed: ()  {
+                       request.logout(
                           'https://volundear.up.railway.app/auth/logout');
 
                       Navigator.of(context).pushAndRemoveUntil(

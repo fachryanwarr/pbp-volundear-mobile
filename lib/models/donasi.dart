@@ -1,10 +1,3 @@
-// To parse this JSON data, do
-//
-//     final Donasi = DonasiFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
 class Donasi {
     Donasi({
         required this.model,

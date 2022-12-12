@@ -173,7 +173,7 @@ class DetailWilayah extends StatelessWidget {
                     SizedBox(height: SizeConfig.screenHeight * 0.02),
 
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         width: 0.8 * SizeConfig.screenWidth,
                         child: ElevatedButton(
                             onPressed: () {
