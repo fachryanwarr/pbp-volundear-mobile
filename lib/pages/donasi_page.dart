@@ -26,18 +26,19 @@ class _DonasiPage extends State<DonasiPage> {
     @override
     Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: const Color(0xff151f2c),
         appBar: myAppBar(context),
         // Menambahkan drawer menu
         body: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 15, top: 10),
+              padding: EdgeInsets.only(left: 15, top: 15, right: 15),
               child: Text(
                 "Donasi",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),),
               CarouselSlider(
@@ -52,13 +53,24 @@ class _DonasiPage extends State<DonasiPage> {
         Image.asset('assets/images/36951-ui.jpeg'),
       ],
     ),
-          const Padding(
-              padding: EdgeInsets.only(left: 15, top: 10),
+    const Padding(
+              padding: EdgeInsets.only(left: 15, top: 15, right: 15),
               child: Text(
-                "DonaDear",
+                "Volundear terus berupaya memberikan bantuan terbaik dengan merespon capat dan tepat untuk mendistribusikan berbagai kebutuhan dasar agar dapat menekan risiko yang lebih parah akibat bencana. Mari kita bergandeng tangan untuk membersamai saudara-saudara kita yang saat ini sedang mendapatkan musibah. Bersama Volundear, ambil peranmu untuk bisa bantu saudara-saudara yang terdampak bencana di berbagai wilayah Indonesia.",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+              textAlign: TextAlign.justify,
+              ),),
+          const Padding(
+              padding: EdgeInsets.only(left: 15, top: 15, right: 15),
+              child: Text(
+                "#DonaDear",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),),
             Expanded(
