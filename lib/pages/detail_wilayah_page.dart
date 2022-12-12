@@ -68,57 +68,107 @@ class DetailWilayah extends StatelessWidget {
                         ),
                       ),),
 
-                    SizedBox(height: SizeConfig.screenHeight * 0.05),
+                    SizedBox(height: SizeConfig.screenHeight * 0.02),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.only(left: 15, top: 10),
-                          child: Text(
-                            "Awal periode",
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Kebutuhan",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ),),
-                        Padding(
-                          padding: EdgeInsets.only(right: 15, top: 10),
-                          child: Text(
-                            "Akhir periode",
-                            style: TextStyle(
+                          ),
+                          Text(
+                            detail.fields.kebutuhan,
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                             ),
-                          ),)
-                      ],
+                          )
+                        ],
+                      ),
                     ),
+
+                    SizedBox(height: SizeConfig.screenHeight * 0.02),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 15, top: 10),
-                          child: Text(
-                            tanggal1,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: Text(
+                                  "Awal Periode",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                  tanggal1,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(right: 15, top: 10),
-                          child: Text(
-                            tanggal2,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),)
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: Text(
+                                  "Akhir Periode",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                tanggal2,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
 
                     SizedBox(height: SizeConfig.screenHeight * 0.05),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 10, right: 15),
+                      child: Text(
+                        detail.fields.description,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: SizeConfig.screenHeight * 0.02),
 
                     Center(
                       child: Container(
