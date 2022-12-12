@@ -3,6 +3,7 @@ import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/profile_json.dart';
 import 'package:volundear/models/profile.dart';
 import 'package:volundear/widgets/profile_card.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -74,6 +75,7 @@ class _ProfilePage extends State<ProfilePage> {
           ))
         ],
       ),
+      bottomNavigationBar: const MyBottomNavBar(selectedNavbar: 4, username: "",),
       // floatingActionButton: Row(
       //   mainAxisAlignment: MainAxisAlignment.end,
       //   children: [

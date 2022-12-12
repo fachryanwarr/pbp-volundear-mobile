@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
+      backgroundColor: const Color(0xff151f2c),
       appBar: myAppBar(context),
       body: ListView(
   children:  <Widget>[
