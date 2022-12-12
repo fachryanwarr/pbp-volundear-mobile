@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
-import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_search.dart';
 import 'package:volundear/pages/login_page.dart';
 import 'package:volundear/widgets/artikel_item_card.dart';
@@ -19,7 +18,7 @@ class ArtikelPage extends StatefulWidget {
 class _ArtikelPage extends State<ArtikelPage> {
     late Future<List<Artikel>> _artikel;
     late ArtikelData _artikelData;
-    
+
     @override
     void initState() {
       _artikelData = ArtikelData();
@@ -81,54 +80,84 @@ class _ArtikelPage extends State<ArtikelPage> {
                               ),
                             );
                       } else {
-                        return Column(
-                          children: [
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (context, index) => Padding(
-                                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                                  child: GestureDetector(
-                                    onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ArtikelDetail(
-                                          artikel: snapshot.data![index],
+                        if (request.loggedIn) {
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, index) => Padding(
+                                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ArtikelDetail(
+                                            artikel: snapshot.data![index],
+                                          ),
                                         ),
                                       ),
+                                      child: ArtikelItemCard(
+                                        artikel: snapshot.data![index],
+                                      ),
                                     ),
-                                    child: ArtikelItemCard(
-                                      artikel: snapshot.data![index],
+                                  ),
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                ),
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                                child: Center(
+                                  child: Text(
+                                    "Login untuk melihat artikel lebih lengkap",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFe971d7),
                                     ),
                                   ),
                                 ),
-                                padding: const EdgeInsets.only(bottom: 12),
                               ),
-                            ),
-                          ],
-                        );
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                                child: ElevatedButton(
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                      backgroundColor: const Color(0xFFe971d7),
+                                  ),
+                                  child: const Text('Login'),
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, index) => Padding(
+                                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                                    child: ArtikelItemCard(
+                                        artikel: snapshot.data![index],
+                                    ),
+                                  ),
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                ),
+                              ),
+                            ],
+                          );
+                        }
                       }
                     }
                   },
                 ),
               )
             )
-          ],
-        ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(padding: const EdgeInsets.only(left: 30),
-              child: FloatingActionButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ArtikelForm()),
-                ),
-                tooltip: 'Tambah Artikel',
-                backgroundColor: const Color(0xFF4EC1F3),
-                child: const Icon(Icons.add),
-              ),
-            ),
           ],
         ),
       );

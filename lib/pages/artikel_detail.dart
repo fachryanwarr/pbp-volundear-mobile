@@ -3,11 +3,7 @@ import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/models/artikelKomentar.dart';
-import 'package:volundear/pages/artikel_form_page.dart';
-import 'package:volundear/pages/artikel_komentar_form.dart';
 import 'package:volundear/widgets/komentar_artikel_item_card.dart';
-import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ArtikelDetail extends StatefulWidget {
   final Artikel artikel;
@@ -33,8 +29,6 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
   
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: const Color(0xFF1E1E1E),
@@ -163,37 +157,6 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     },
                   ),
               ),
-                // Button komentar
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const KomentarForm()), //FormKomentar()
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50), 
-                        backgroundColor: const Color(0xFFe971d7),
-                    ),
-                        
-                    child: const Text('Komentar'),
-                  ),
-                ),
-                // Button tambah artikel
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ArtikelForm()),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        backgroundColor: const Color(0xFFe971d7),
-                    ),
-                    child: const Text('Tambah Artikel'),
-                  ),
-                ),
             ],
           ),
         )
