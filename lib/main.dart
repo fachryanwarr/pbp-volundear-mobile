@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Provider(
@@ -41,9 +40,15 @@ class MyHomePage extends StatefulWidget {
   final String title;
   final String username;
 
+  Future<void> submitV2(BuildContext context, CookieRequest request) async {
+    final response = await request.post(
+        'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/',
+        {});
+  }
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-}
+  }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -56,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           ElevatedButton(onPressed: () {
-          }, child: Text(widget.username)),
+          }, child: const Text("DUMMY")),
         ],
       ),
       bottomNavigationBar: MyBottomNavBar(selectedNavbar: 0, username: widget.username,),
