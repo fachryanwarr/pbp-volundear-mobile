@@ -46,13 +46,12 @@ class MyHomePage extends StatefulWidget {
 
   Future<void> submitV2(BuildContext context, CookieRequest request) async {
     final response = await request.post(
-        'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/',
-        {});
+        'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/', {});
   }
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-  }
+}
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -67,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(onPressed: () {}, child: Text(widget.username)),
           ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => ProfilePage(),
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
                 ));
               },
               child: const Text("GO TO PROFILE")),
