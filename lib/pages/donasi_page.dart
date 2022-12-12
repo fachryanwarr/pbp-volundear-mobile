@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
+import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/donasi_json.dart';
 
 import '../models/donasi.dart';
@@ -27,11 +27,8 @@ class _DonasiPage extends State<DonasiPage> {
     Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFF1E1E1E),
-        appBar: AppBar(
-          title: const Text('Donasi'),
-        ),
+        appBar: myAppBar(context),
         // Menambahkan drawer menu
-        drawer: const MyDrawer(),
         body: Center(
           child: FutureBuilder(
             future: _donasi,
