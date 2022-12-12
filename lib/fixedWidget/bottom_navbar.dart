@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:volundear/pages/daftarWilayah_page.dart';
 import 'package:volundear/pages/artikel_page.dart';
 import 'package:volundear/pages/donasi_page.dart';
+import 'package:volundear/pages/landingPage_page.dart';
 import 'package:volundear/pages/profile_page.dart';
 import 'package:volundear/main.dart';
 
@@ -25,6 +26,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     int selectedNavbar = 0;
 
     List bodyContent = [
+    
       MyHomePage(title: "Volundear", username: widget.username),
       WilayahPage(username: widget.username,),
       ArtikelPage(username: widget.username,),

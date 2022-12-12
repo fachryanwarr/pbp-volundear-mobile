@@ -1,13 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
+import 'package:volundear/fixedWidget/appbar.dart';
+import 'package:volundear/pages/artikel_page.dart';
+import 'package:volundear/pages/daftarWilayah_page.dart';
+import 'package:volundear/pages/donasi_page.dart';
 
 class LandingPage extends StatelessWidget {
+  final String username = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: myAppBar(context),
       backgroundColor: Colors.black,
     
       body: ListView(
@@ -16,34 +20,35 @@ class LandingPage extends StatelessWidget {
         height: 330,  
           decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('fix1.png'), fit: BoxFit.cover),
+                      image: AssetImage('assets/images/fix1.png'), fit: BoxFit.cover),
                       
                   ),),
-        SizedBox(height: 30,),
+        SizedBox(height: 20,),
                   
     
   
     Text(
     "About Us",
-    style: TextStyle(color: Colors.white),
+    style: TextStyle(color: Colors.white, fontSize: 16 ),
     textAlign: TextAlign.left,
     
     ),
+    SizedBox(height: 10,),
 
     Text(
     "Volundear merupakan sebuah website yang dapat memfasilitasi para relawan individu yang ingin mengabdikan dirinya pada masyarakat. Selain itu, kami juga ingin menjadi wadah bagi para donatur yang ingin berdonasi. Kami berniat untuk menyatukan berbagai pihak dari berbagai bidang untuk membentuk komunitas di wilayah-wilayah yang belum terjangkau sebagai bentuk pemberdayaan masyarakat di seluruh Indonesia.", 
-    style: TextStyle(color: Colors.white),
-    textAlign: TextAlign.center,
+    style: TextStyle(color: Colors.white, fontSize: 12,),
+    textAlign: TextAlign.left,
     
     ), 
     // Card fitur
-    SizedBox(height: 80,),
+    SizedBox(height: 65,),
     Text(
     "Our Features", 
-    style: TextStyle(color: Colors.white),
+    style: TextStyle(color: Colors.white, fontSize: 35,),
     textAlign: TextAlign.center,
     ),
-    SizedBox(height: 10,),
+  
     Padding(
       padding: const EdgeInsets.all(32.0),
       child: Card(
@@ -58,7 +63,7 @@ class LandingPage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Image.asset('wilayah.png'),
+                        Image.asset('assets/images/wilayah.png'),
                         SizedBox(
                           height: 16,
                         ),
@@ -78,13 +83,16 @@ class LandingPage extends StatelessWidget {
                     height: 35,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffF18265),
+                        backgroundColor: Color.fromARGB(255, 53, 13, 216),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                           
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => WilayahPage(username: username)),
+                                  ),
                       child: Text(
                         "Cek di sini",
                         style: TextStyle(
@@ -102,7 +110,7 @@ class LandingPage extends StatelessWidget {
     ),
               
               Padding(
-                padding: const EdgeInsets.all(64.0),
+                padding: const EdgeInsets.all(32.0),
                 child: Card(
                   elevation: 12,
                   shape: RoundedRectangleBorder(
@@ -113,7 +121,7 @@ class LandingPage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Image.asset('donasi.png'),
+                        Image.asset('assets/images/donasi.png'),
                         SizedBox(
                           height: 16,
                         ),
@@ -133,13 +141,17 @@ class LandingPage extends StatelessWidget {
                     height: 35,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffF18265),
+                        backgroundColor: Color.fromARGB(255, 53, 13, 216),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                           
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => DonasiPage(username: username)),
+                                  ),
+                     
                       child: Text(
                         "Cek di sini",
                         style: TextStyle(
@@ -157,7 +169,7 @@ class LandingPage extends StatelessWidget {
               ),
               
                Padding(
-                 padding: const EdgeInsets.all(64.0),
+                 padding: const EdgeInsets.all(32.0),
                  child: Card(
                   elevation: 12,
                   shape: RoundedRectangleBorder(
@@ -168,7 +180,7 @@ class LandingPage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Image.asset('article.png'),
+                        Image.asset('assets/images/article.png'),
                         SizedBox(
                           height: 16,
                         ),
@@ -188,13 +200,16 @@ class LandingPage extends StatelessWidget {
                     height: 35,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffF18265),
+                        backgroundColor: Color.fromARGB(255, 53, 13, 216),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                           
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => ArtikelPage(username:username)),
+                                  ),
                       child: Text(
                         "Cek di sini",
                         style: TextStyle(
@@ -212,7 +227,7 @@ class LandingPage extends StatelessWidget {
                ),
               
                Padding(
-                 padding: const EdgeInsets.all(64.0),
+                 padding: const EdgeInsets.all(32.0),
                  child: Card(
                   elevation: 12,
                   shape: RoundedRectangleBorder(
@@ -223,7 +238,7 @@ class LandingPage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Image.asset('relawan.png'),
+                        Image.asset('assets/images/relawan.png'),
                         SizedBox(
                           height: 16,
                         ),
@@ -237,6 +252,7 @@ class LandingPage extends StatelessWidget {
                             SizedBox(height: 5),
                             Text('Mendaftarkan diri sebagai relawan setelah memilih wilayah, mengisi keahlian yang ditawarkan, dan mengisi kesediaan waktu',
                                 style: Theme.of(context).textTheme.headline6),
+                                
                             SizedBox(height: 16),
                             Container(
                           
@@ -244,13 +260,16 @@ class LandingPage extends StatelessWidget {
                     height: 35,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xffF18265),
+                        backgroundColor: Color.fromARGB(255, 53, 13, 216),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                           
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => WilayahPage(username: username)),
+                                  ),
                       child: Text(
                         "Cek di sini",
                         style: TextStyle(
@@ -267,8 +286,8 @@ class LandingPage extends StatelessWidget {
               ),
                ),
     SizedBox(height: 80,),
-    Text("Faq", 
-        style: TextStyle(color: Colors.white),
+    Text("   Faq", 
+        style: TextStyle(color: Colors.white, fontSize: 20,),
         textAlign: TextAlign.left,),
         SizedBox( height: 10),
 
@@ -315,7 +334,6 @@ class LandingPage extends StatelessWidget {
         
   ],
 ),
-    
     );
   }
 }
