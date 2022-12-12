@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
@@ -9,7 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ArtikelPage extends StatefulWidget {
-    const ArtikelPage({Key? key}) : super(key: key);
+    const ArtikelPage({Key? key, required this.username}) : super(key: key);
+
+    final String username;
 
     @override
     State<ArtikelPage> createState() => _ArtikelPage();
@@ -160,6 +163,7 @@ class _ArtikelPage extends State<ArtikelPage> {
             )
           ],
         ),
+        bottomNavigationBar: MyBottomNavBar(selectedNavbar: 2, username: widget.username,),
       );
   }
 }

@@ -27,7 +27,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     List bodyContent = [
       MyHomePage(title: "Volundear", username: widget.username),
       WilayahPage(username: widget.username,),
-      const ArtikelPage(),
+      ArtikelPage(username: widget.username,),
       DonasiPage(username: widget.username),
       const Text("Community"),
     ];
