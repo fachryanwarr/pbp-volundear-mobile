@@ -47,22 +47,6 @@ class _FormWilayahState extends State<FormWilayah> {
         });
   }
 
-  Future<void> submit(BuildContext context, CookieRequest request) async {
-    final response = await http.post(
-        Uri.parse('http://localhost:8000/daftarwilayah/add_new_flutter/'),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(<String, dynamic>{
-          'name' : nama,
-          'kota':kota,
-          'address':alamat,
-          'kuota_max':kuotaMax,
-          'description':kuotaTerisi,
-          'kebutuhan':kebutuhan,
-          'awal_periode':awalPeriode,
-          'akhir_periode':akhirPeriode,
-        }));
-  }
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -427,7 +411,6 @@ class _FormWilayahState extends State<FormWilayah> {
                         onPressed: () async {
                           if (_newWilayahKey.currentState!.validate()) {
                             // ignore: unused_local_variable
-                            print("tes masuk");
                             submitV2(context, request);
 
                             showDialog(
