@@ -7,6 +7,7 @@ import 'package:volundear/fixedWidget/bottom_navbar.dart';
 import 'package:volundear/pages/detail_wilayah_page.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:volundear/pages/form_newWilayah.dart';
 
 class WilayahPage extends StatefulWidget {
   const WilayahPage({Key? key, required this.username}) : super(key: key);
@@ -67,86 +68,80 @@ class _WilayahPageState extends State<WilayahPage> {
                       color: Color(0xff59A5D8),
                       fontSize: 20),
                 ),
-                SizedBox(height: 8),
               ],
             );
           } else {
-            return ListView.builder(
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index)=> Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                        color:Colors.white,
-                        borderRadius: BorderRadius.circular(15.0),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 2.0
-                          )
-                        ]
-                    ),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${snapshot.data![index].fields.name}, ${snapshot.data![index].fields.kota}",
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  height: 300,
+                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  decoration: BoxDecoration(
+                      color:Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 2.0
+                        )
+                      ]
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Container(
+                      //   height: 30,
+                      //   decoration: const BoxDecoration(
+                      //     borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+                      //     image: DecorationImage(
+                      //       image: AssetImage("assets/images/mountain.jpg"),
+                      //       fit: BoxFit.cover,
+                      //     ),
+                      //   ),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          "${snapshot.data![index].fields.name}, ${snapshot.data![index].fields.kota}",
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailWilayah(detail: snapshot.data![index]),
-                                    )
-                                );
-                              },
-                              child: const Text("Lihat selengkapnya"))
-                        ],
+                        ),
                       ),
-                    )
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailWilayah(detail: snapshot.data![index]),
+                                  )
+                              );
+                            },
+                            child: const Text("Detail")),
+                      )
+                    ],
+                  ),
                 )
             );
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const FormWilayah(),
+              )
+          );
+        },
+        child: const Icon(Icons.add),
+
+      ),
       bottomNavigationBar: MyBottomNavBar(selectedNavbar: 1, username: widget.username,),
     );
   }
 }
-
-class AddWilayahButton extends StatelessWidget {
-  const AddWilayahButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-          color:Colors.white,
-          borderRadius: BorderRadius.circular(15.0),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black,
-                blurRadius: 2.0
-            )
-          ]
-      ),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
