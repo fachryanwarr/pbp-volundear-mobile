@@ -39,7 +39,7 @@ class Fields {
   final user;
   final String name;
   final String gender;
-  final String phone_number;
+  final int phone_number;
   final String pekerjaan;
   final String alamat;
   final int tanggal_lahir;
