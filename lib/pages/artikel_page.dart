@@ -3,6 +3,7 @@ import 'package:volundear/drawer.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
+import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_search.dart';
 import 'package:volundear/widgets/artikel_item_card.dart';
 
@@ -98,7 +99,23 @@ class _ArtikelPage extends State<ArtikelPage> {
               )
             )
           ],
-        )
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(padding: const EdgeInsets.only(left: 30),
+              child: FloatingActionButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ArtikelForm()),
+                ),
+                tooltip: 'Tambah Artikel',
+                backgroundColor: const Color(0xFF4EC1F3),
+                child: const Icon(Icons.add),
+              ),
+            ),
+          ],
+        ),
       );
   }
 }

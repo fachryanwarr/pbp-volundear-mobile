@@ -94,7 +94,7 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 2),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Text(
                             widget.artikel.fields.isi,
                             textAlign: TextAlign.justify,
