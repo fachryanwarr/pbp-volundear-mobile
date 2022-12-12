@@ -1,70 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/fixedWidget/bottom_navbar.dart';
 import 'package:volundear/jsons/artikel_json.dart';
-import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
-import 'package:volundear/pages/artikel_search.dart';
 import 'package:volundear/pages/login_page.dart';
 import 'package:volundear/widgets/artikel_item_card.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class ArtikelPage extends StatefulWidget {
-    const ArtikelPage({Key? key, required this.username}) : super(key: key);
+class SearchArtikel extends SearchDelegate{
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () {
+          query = "";
+        },
+      )
+    ];
+  }
 
-    final String username;
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back_ios),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
 
-    @override
-    State<ArtikelPage> createState() => _ArtikelPage();
-}
+  final ArtikelData _artikelData = ArtikelData();
 
-class _ArtikelPage extends State<ArtikelPage> {
-    late Future<List<Artikel>> _artikel;
-    late ArtikelData _artikelData;
-
-    @override
-    void initState() {
-      _artikelData = ArtikelData();
-      _artikel = _artikelData.fetchArtikel();
-      super.initState();
-    }
-
-    @override
-    Widget build(BuildContext context) {
+  @override
+  Widget buildResults(BuildContext context) {
     final request = context.watch<CookieRequest>();
-
     return Scaffold(
         backgroundColor: const Color(0xFF1E1E1E),
-        appBar: AppBar(
-          title: const Text("Volundear"),
-          backgroundColor: const Color.fromARGB(100, 30, 30, 30),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: (){
-                showSearch(context: context, delegate: SearchArtikel());
-              }, 
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    )
-                );
-              },
-              icon: const Icon(
-                Icons.person,
-              ),
-            ),
-          ],
-        ),
         body: Column(
           children: [
             Expanded(
               child: Center(
                 child: FutureBuilder(
-                  future: _artikel,
+                  future: _artikelData.fetchArtikel(query: query),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return const Center(child: CircularProgressIndicator());
@@ -163,7 +140,21 @@ class _ArtikelPage extends State<ArtikelPage> {
             )
           ],
         ),
-        bottomNavigationBar: MyBottomNavBar(selectedNavbar: 2, username: widget.username,),
       );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Color(0xFF1E1E1E),
+      body: Center(
+        child: Text(
+          'Search Artikel',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+          ),
+      ),
+    );
   }
 }

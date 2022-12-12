@@ -1,5 +1,7 @@
-class Artikel {
-    Artikel({
+// ignore_for_file: file_names
+
+class Komentar {
+    Komentar({
         required this.model,
         required this.pk,
         required this.fields,
@@ -9,7 +11,7 @@ class Artikel {
     final int pk;
     final Fields fields;
 
-    factory Artikel.fromJson(Map<String, dynamic> json) => Artikel(
+    factory Komentar.fromJson(Map<String, dynamic> json) => Komentar(
         model: json["model"],
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
@@ -24,32 +26,28 @@ class Artikel {
 
 class Fields {
     Fields({
+        required this.artikel,
         required this.penulis,
-        required this.judul,
-        required this.rilis,
-        required this.pembuka,
-        required this.isi,
+        required this.waktu,
+        required this.deskripsi,
     });
 
+    final int artikel;
     final int penulis;
-    final String judul;
-    final DateTime rilis;
-    final String pembuka;
-    final String isi;
+    final DateTime waktu;
+    final String deskripsi;
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
+        artikel: json["artikel"],
         penulis: json["penulis"],
-        judul: json["judul"],
-        rilis: DateTime.parse(json["rilis"]),
-        pembuka: json["pembuka"],
-        isi: json["isi"],
+        waktu: DateTime.parse(json["waktu"]),
+        deskripsi: json["deskripsi"],
     );
 
     Map<String, dynamic> toJson() => {
+        "artikel": artikel,
         "penulis": penulis,
-        "judul": judul,
-        "rilis": "${rilis.year.toString().padLeft(4, '0')}-${rilis.month.toString().padLeft(2, '0')}-${rilis.day.toString().padLeft(2, '0')}",
-        "pembuka": pembuka,
-        "isi": isi,
+        "waktu": "${waktu.year.toString().padLeft(4, '0')}-${waktu.month.toString().padLeft(2, '0')}-${waktu.day.toString().padLeft(2, '0')}",
+        "deskripsi": deskripsi,
     };
 }
