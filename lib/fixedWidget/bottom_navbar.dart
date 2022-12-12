@@ -27,8 +27,8 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     List bodyContent = [
       MyHomePage(title: "Volundear", username: widget.username),
       WilayahPage(username: widget.username,),
-      const Text("ARTIKEL"),
-      const DonasiPage(),
+      ArtikelPage(username: widget.username,),
+      DonasiPage(username: widget.username),
       const Text("Community"),
     ];
 
@@ -74,7 +74,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.people),
-          label: "Komunitas",
+          label: "Relawan",
         )
       ],
     );

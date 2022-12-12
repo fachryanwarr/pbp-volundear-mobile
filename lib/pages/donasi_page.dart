@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/donasi_json.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
 
 import '../models/donasi.dart';
 import '../widgets/donasi_item_card.dart';
 
 class DonasiPage extends StatefulWidget {
-    const DonasiPage({Key? key}) : super(key: key);
+    const DonasiPage({Key? key, required this.username}) : super(key: key);
+
+    final String username;
 
     @override
     State<DonasiPage> createState() => _DonasiPage();
@@ -26,7 +29,7 @@ class _DonasiPage extends State<DonasiPage> {
     @override
     Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF1E1E1E),
+        backgroundColor: const Color(0xff151f2c),
         appBar: myAppBar(context),
         // Menambahkan drawer menu
         body: Center(
@@ -64,7 +67,8 @@ class _DonasiPage extends State<DonasiPage> {
               }
             },
           ),
-        )
+        ),
+      bottomNavigationBar: MyBottomNavBar(selectedNavbar: 3, username: widget.username,),
       );
   }
 }
