@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
+import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/pages/artikel_page.dart';
 
 class ArtikelForm extends StatefulWidget {
@@ -13,21 +13,21 @@ class ArtikelForm extends StatefulWidget {
 class _ArtikelFormState extends State<ArtikelForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final String _model = "artikel.artikel";
-  final int _pk = 0;
-  int _penulis = 0;
-  String _judul = "";
-  final String _rilis = (DateTime.now()).toString();
-  String _pembuka = "";
-  String _isi = "";
+  String judul = "";
+  String pembuka = "";
+  String isi = "";
+
+  void add(request, judul, pembuka, isi) async {
+    await request.post('', {
+      "judul": judul,
+      "pembuka": pembuka,
+      "isi": isi
+    });
+  }
 
   Future<void> submit(
-    BuildContext context, String model, int pk, int penulis, String judul, String rilis, String pembuka, String isi) async {
-    String modelController = model;
-    int pkController = pk;
-    int penulisController = penulis;
+    BuildContext context, String judul, String pembuka, String isi) async {
     String judulController = judul;
-    String rilisController = rilis;
     String pembukaController = pembuka;
     String isiController = isi;
     final response = await http.post(
@@ -35,26 +35,17 @@ class _ArtikelFormState extends State<ArtikelForm> {
             "https://volundear.up.railway.app/artikel/json/"),
         headers: <String, String>{'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
-          'model' : modelController,
-          'pk': pkController + 1,
-          'penulis': penulisController,
           'judul': judulController,
-          'rilis': rilisController,
           'pembuka': pembukaController,
           'isi': isiController,
         }));
-    // ignore: avoid_print
-    print(response.body);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E1E),
-      drawer: const MyDrawer(),
-      appBar: AppBar(
-        title: const Text("Tambahkan Artikel"),
-      ),
+      appBar: myAppBar(context),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -62,43 +53,15 @@ class _ArtikelFormState extends State<ArtikelForm> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                // Form Penulis
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black,
-                      decorationColor: Colors.white,
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Tuliskan Artikelmu!",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "Isi dengan nama sesuai identitas",
-                      labelText: "Nama Penulis",
-                      icon: const Icon(Icons.person, 
-                      color: Colors.white),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                    // Menambahkan behavior saat judul diketik 
-                    onChanged: (String? value) {
-                        setState(() {
-                            _penulis = int.parse(value!);
-                        });
-                    },
-                    // Menambahkan behavior saat data disimpan
-                    onSaved: (String? value) {
-                        setState(() {
-                            _penulis = int.parse(value!);
-                        });
-                    },
-                    // Validator sebagai validasi form
-                    validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                            return 'Nama penulis tidak boleh kosong!';
-                        }
-                        return null;
-                    },
                   ),
                 ),
                 // Form Judul
@@ -122,13 +85,13 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     // Menambahkan behavior saat judul diketik 
                     onChanged: (String? value) {
                         setState(() {
-                            _judul = value!;
+                            judul = value!;
                         });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                         setState(() {
-                            _judul = value!;
+                            judul = value!;
                         });
                     },
                     // Validator sebagai validasi form
@@ -161,13 +124,13 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     // Menambahkan behavior saat judul diketik 
                     onChanged: (String? value) {
                         setState(() {
-                            _pembuka = value!;
+                            pembuka = value!;
                         });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                         setState(() {
-                            _pembuka = value!;
+                            pembuka = value!;
                         });
                     },
                     // Validator sebagai validasi form
@@ -200,13 +163,13 @@ class _ArtikelFormState extends State<ArtikelForm> {
                     // Menambahkan behavior saat judul diketik 
                     onChanged: (String? value) {
                         setState(() {
-                            _isi = value!;
+                            isi = value!;
                         });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                         setState(() {
-                            _isi = value!;
+                            isi = value!;
                         });
                     },
                     // Validator sebagai validasi form
@@ -232,7 +195,7 @@ class _ArtikelFormState extends State<ArtikelForm> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            submit(context, _model, _pk, _penulis, _judul, _rilis, _pembuka, _isi);
+                            submit(context, judul, pembuka, isi);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => const ArtikelPage()),

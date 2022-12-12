@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/pages/artikel_detail.dart';
 import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_search.dart';
+import 'package:volundear/pages/login_page.dart';
 import 'package:volundear/widgets/artikel_item_card.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ArtikelPage extends StatefulWidget {
     const ArtikelPage({Key? key}) : super(key: key);
@@ -27,21 +29,34 @@ class _ArtikelPage extends State<ArtikelPage> {
 
     @override
     Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         backgroundColor: const Color(0xFF1E1E1E),
         appBar: AppBar(
-          title: const Text('Artikel'),
+          title: const Text("Volundear"),
+          backgroundColor: const Color.fromARGB(100, 30, 30, 30),
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
               onPressed: (){
                 showSearch(context: context, delegate: SearchArtikel());
               }, 
-            )
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    )
+                );
+              },
+              icon: const Icon(
+                Icons.person,
+              ),
+            ),
           ],
         ),
-        // Menambahkan drawer menu
-        drawer: const MyDrawer(),
         body: Column(
           children: [
             Expanded(

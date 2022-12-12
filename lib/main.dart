@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
+import 'package:volundear/fixedWidget/appbar.dart';
+import 'package:volundear/fixedWidget/bottom_navbar.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:volundear/pages/login_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -7,89 +12,54 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LandingPage 7',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Volundear', username: "",),
+        routes: {
+          "/login-flutter": (BuildContext context) => const LoginPage(),
+        },
       ),
-      home: const LandingPage(),
     );
   }
 }
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
-  final String title = 'Program LandingPage';
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title, required this.username});
+
+  final String title;
+  final String username;
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
-  }
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
-class _LandingPageState extends State<LandingPage> {
-  int _LandingPage = 0;
-
-  void _incrementLandingPage() {
-    setState(() {
-      _LandingPage++;
-    });
-  }
-
-  void _decrementLandingPage() {
-    setState(() {
-      _LandingPage--;
-    });
-  }
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      // Menambahkan drawer menu
-      drawer: const MyDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (_LandingPage % 2 == 0) 
-              const Text(
-                'GENAP',
-                style: TextStyle(color: Colors.blue),
-              )
-            else 
-              const Text(
-              'GANJIL',
-              style: TextStyle(color: Colors.red),
-            ),
-            Text(
-              '$_LandingPage',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: const Color(0xff151f2c),
+      appBar: myAppBar(context),
+      body: Column(
         children: [
-          if (_LandingPage > 0)
-            Padding(padding: const EdgeInsets.only(left: 30),
-              child: FloatingActionButton(
-                onPressed: _decrementLandingPage,
-                tooltip: 'Decrement',
-                child: const Icon(Icons.remove),
-              ),
-            ),
-          Padding(padding: const EdgeInsets.only(left: 30),
-            child: FloatingActionButton(
-              onPressed: _incrementLandingPage,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
-          ),
+          ElevatedButton(onPressed: () {
+          }, child: Text(widget.username)),
         ],
       ),
+      bottomNavigationBar: MyBottomNavBar(selectedNavbar: 0, username: widget.username,),
     );
   }
 }

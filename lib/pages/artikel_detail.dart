@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:volundear/drawer.dart';
+import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/artikel_json.dart';
 import 'package:volundear/models/artikel.dart';
 import 'package:volundear/models/artikelKomentar.dart';
 import 'package:volundear/pages/artikel_form_page.dart';
 import 'package:volundear/pages/artikel_komentar_form.dart';
-import 'package:volundear/pages/artikel_page.dart';
 import 'package:volundear/widgets/komentar_artikel_item_card.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ArtikelDetail extends StatefulWidget {
   final Artikel artikel;
@@ -31,15 +32,13 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
   }
   
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
+    return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: const Color(0xFF1E1E1E),
-        appBar: AppBar(
-          title: const Text('Artikel Lengkap'),
-          elevation: 0,
-        ),
-        // Menambahkan drawer menu
-        drawer: const MyDrawer(),
+        appBar: myAppBar(context),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -195,21 +194,10 @@ class _ArtikelDetailState extends State<ArtikelDetail>{
                     child: const Text('Tambah Artikel'),
                   ),
                 ),
-                // Button kembali
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        backgroundColor: const Color(0xFFe971d7),
-                    ),
-                    child: const Text('Back'),
-                  ),
-                ),
             ],
           ),
         )
         
       );
+  }
 }
