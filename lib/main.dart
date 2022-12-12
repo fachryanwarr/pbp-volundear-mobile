@@ -46,18 +46,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
+      backgroundColor: const Color(0xff151f2c),
       appBar: myAppBar(context),
       body: Column(
         children: [
           ElevatedButton(onPressed: () {
-          }, child: Text(widget.username))
+          }, child: Text(widget.username)),
         ],
       ),
-      bottomNavigationBar: const MyBottomNavBar(),
+      bottomNavigationBar: MyBottomNavBar(selectedNavbar: 0, username: widget.username,),
     );
   }
 }
