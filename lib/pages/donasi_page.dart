@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:volundear/fixedWidget/appbar.dart';
 import 'package:volundear/jsons/donasi_json.dart';
-
 import '../models/donasi.dart';
 import '../widgets/donasi_item_card.dart';
 
@@ -32,6 +31,15 @@ class _DonasiPage extends State<DonasiPage> {
         // Menambahkan drawer menu
         body: Column(
           children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 15, top: 10),
+              child: Text(
+                "Donasi",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),),
             CarouselSlider(
             options: CarouselOptions(
               height: 400,
@@ -63,6 +71,15 @@ class _DonasiPage extends State<DonasiPage> {
               );
             }).toList(),
           ),
+          const Padding(
+              padding: EdgeInsets.only(left: 15, top: 10),
+              child: Text(
+                "DonaDear",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),),
             Expanded(
               child: Center(
           child: FutureBuilder(
