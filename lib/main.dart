@@ -8,6 +8,7 @@ import 'package:volundear/pages/daftarRelawan_page.dart';
 import 'package:volundear/pages/daftarWilayah_page.dart';
 import 'package:volundear/pages/donasi_page.dart';
 import 'package:volundear/pages/login_page.dart';
+import 'package:volundear/pages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(title: 'Volundear', username: "",),
+        home: const MyHomePage(
+          title: 'Volundear',
+          username: "",
+        ),
         routes: {
           "/login-flutter": (BuildContext context) => const LoginPage(),
         },
@@ -46,13 +50,12 @@ class MyHomePage extends StatefulWidget {
 
   Future<void> submitV2(BuildContext context, CookieRequest request) async {
     final response = await request.post(
-        'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/',
-        {});
+        'https://volundear.up.railway.app/daftarwilayah/add_new_flutter/', {});
   }
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-  }
+}
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -61,8 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: myAppBar(context),
-      backgroundColor: Colors.black,
-    
       body: ListView(
   children:  <Widget>[
         Container( width: 500,
